@@ -140,5 +140,18 @@
   </body>
   </html>
   
+★④【离屏canvas】
+1.三种图像操作方式：
+  context.drawImage(Image,dx,dy)
+  context.drawImage(Image,dx,dy,dw,dh)
+  context.drawImage(Image,sx,sy,sw,sh,dx,dy,dw,dh)
+  ✿除了引入图片外，还可以引入canvas。
+  context.drawImage(canvas,dx,dy)
+  context.drawImage(canvas,dx,dy,dw,dh)
+  context.drawImage(canvas,sx,sy,sw,sh,dx,dy,dw,dh)
+2.所谓的离屏canvas即是指在第一张canvas画布上在附一张canvas画布，操作不受前一张影响。
+  ✿实例：加水印。（详见附件）
+
+
 
   

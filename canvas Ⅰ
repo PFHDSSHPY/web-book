@@ -1,0 +1,20 @@
+①
+1.HTML
+  <canvas id="canvas"></canvas>
+2.JS
+  <script>
+      var canvas=document.getElementById('canvas');
+      var context=canvas.getContext('2d');
+  </script>
+  //使用context进行绘制（创建2d上下文环境，渲染接口基于context进行）
+3.canvas的大小（尽量不在css中设置）
+  设置方式：（默认300,150）
+  window.onload=function(){
+      canvas.width=1152;
+      canvas.height=768;
+  }
+4.drawImage（渲染图片）
+  将图片先置于画布上；
+  context.drawImage(image,dx,dy)
+  ↑（绘图接口，图像对象，图像坐标，告诉从何处开始渲染）
+  

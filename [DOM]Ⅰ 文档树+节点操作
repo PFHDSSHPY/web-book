@@ -1,0 +1,77 @@
+DOM编程艺术-DOM树
+一：DOM
+1.API规范
+
+DOM CORE
+DOM HTML
+节点便利
+
+节点类型
+
+元素节点
+文本节点
+元素遍历
+element.children能够获取元素的元素子节点，但是低版本的ie不支持，如何在低版本的ie上兼容类似的功能。
+ function getElementChild(element){
+        if(!element.children){
+            var elementArr = [];//声明一个数组用以存放之后获取的子节点
+            var nodeList = element.childNodes;//初始化接受参数的子节点集合
+            for(var i=0;i<nodeList.length;i++){ //遍历集合
+                if(nodeList[i].nodeType == 1){//若节点的元素类型属于1，即元素节点,存入数组
+                    elementArr.push(nodeList[i]);
+                }
+            }
+            return elementArr;//返回存放子元素的数组
+        }
+        else{                   //若支持element.children,直接返回
+            return element.children;
+        }
+    }
+DOM STYLE
+DOM EVENT
+
+节点操作
+本节内容概要：
+getElementById,getElementsByClassName,getElementsByTagName,querySelector(All),createElement,innerText,appendChild,insertBefore,removeChild,innerHTML
+1.获取节点；
+
+通过以上节点关系获取节点，可维护性差；
+通过接口获取节点：
+
+getElementById: document.getElementById('id');
+
+getElementsByTagName: document.getElementsByTagName('id');
+
+
+getElementsByClassName: document.getElementsByClassName('id');【这种byclass的方式对于IE6.7.8不适用，所以要做兼容性】
+兼容性方式如下：
+
+
+实例：
+
+
+querySelector/ALL
+list=element.querySelector/All( selector );
+实例：【list 获取后不可变，不是 alive的；】
+
+总结：
+
+
+
+2.创建节点；
+element=document.createElement("tagname")
+3.修改节点；
+element.textContent
+element.innerText
+FIREFOX不支持：兼容性：
+
+
+4.插入节点；
+appendChild ：var achild=element.appendChild(achild);
+insertbefore ：var achild=element.insertBefore(achild（插入它）,referenceChind （在他的前面）);
+5.删除节点；
+remove ：child＝element.removechild（child） 
+6.innerHTML；
+element.innerHTML
+内存泄漏；安全问题；
+建议禁用于新节点；

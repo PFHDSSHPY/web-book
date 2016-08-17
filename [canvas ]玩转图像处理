@@ -1,0 +1,43 @@
+①【使用drawImage绘制图像】
+1.HTML
+  <canvas id="canvas"></canvas>
+2.JS
+  <script>
+      var canvas=document.getElementById('canvas');
+      var context=canvas.getContext('2d');
+  </script>
+  //使用context进行绘制（创建2d上下文环境，渲染接口基于context进行）
+3.canvas的大小（尽量不在css中设置）
+  设置方式：（默认300,150）
+  window.onload=function(){
+      canvas.width=1152;
+      canvas.height=768;
+  }
+4.drawImage（渲染图片）
+  将图片先置于画布上；
+  context.drawImage(image,dx,dy)
+  ↑（绘图接口，图像对象，图像坐标，告诉从何处开始渲染）
+  例：（创建图片↓）
+  <canvas id="canvas" style="background-color: gold"></canvas>
+  <script>
+      var canvas=document.getElementById('canvas');
+      var context=canvas.getContext('2d');
+      var Image=new Image();  //在内存中创建该图片，从内存中读取而不是服务器；
+      window.onload=function(){
+        canvas.width=1152;
+        canvas.height=768;
+        Image.src='pointer.jpg';   //JS读取该图片；
+        Image.onload=function(){
+            context.drawImage(Image,100,100)
+        }
+      }
+  </script>
+  4.1xx:注意△1.函数必须卸载图片加载完才能执行的函数内，Image.onload=function(){}。不然大图片未加载完开始渲染会出现问题。
+            △2.创建图片引入的都是原有尺寸，不会缩放。
+
+②【玩转drawImage的参数】
+1.context.drawImage(Image,dx,dy)
+  context.drawImage(Image,dx,dy,dw,dh)//绘制图片的宽和高；
+2.context.drawImage(Image,sx,sy,sw,sh,dx,dy,dw,dh)
+//原绘制图片上某一部分（宽高为SH,SW；坐标为SX,SY），这部分摘出来，渲染到canvas画布上的坐标位置DX,DY，宽和高DH,DW；
+  

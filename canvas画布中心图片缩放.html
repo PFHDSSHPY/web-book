@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>big&small</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color:dimgray;
+        }
+       #oInput{
+           display: block;
+           margin: 10px auto;
+           width: 800px;
+       }
+    </style>
+</head>
+<body>
+<canvas id="canvas" style="background-color: gold;display: block;margin: 10px auto" ></canvas>
+<input id="oInput" type="range" min="0.5" max="3.0" step="0.01" value="1.0"/>
+<script>
+    var canvas=document.getElementById('canvas');
+    var slider=document.getElementById('oInput');
+    var context=canvas.getContext('2d');
+    var Image=new Image();  //在内存中创建该图片，从内存中读取而不是服务器；
+    window.onload=function(){
+
+        canvas.width=1152;
+        canvas.height=768;
+
+        var scale=slider.value; //当前滑杆表示的值，绘制时是要将scale倍的图像绘制在画布上
+
+        Image.src='3.jpg';   //JS读取该图片；
+        Image.onload=function(){
+            //context.drawImage(Image,0,0,canvas.width,canvas.height)
+            //创建新函数，赋值变量scale，Image以scale倍绘制在画布上↓
+            drawImageByscale(scale);
+            slider.onmousemove=function(){
+                scale=slider.value;
+                drawImageByscale(scale);
+            }
+        }
+        function drawImageByscale(scale){
+            var imageWidth=1152*scale;
+            var imageHeight=768*scale;
+            var dx=canvas.width/2-imageWidth/2;
+            var dy=canvas.height/2-imageHeight/2;
+            context.clearRect(0,0,canvas.width,canvas.height);
+            context.drawImage(Image,dx,dy,imageWidth,imageHeight);
+        }
+    }
+</script>
+</body>
+</html>

@@ -152,6 +152,46 @@
 2.所谓的离屏canvas即是指在第一张canvas画布上在附一张canvas画布，操作不受前一张影响。
   ✿实例：加水印。（详见附件）
 
-
+★⑤canvas画布和鼠标的交互
+1.首先需要获取鼠标在canvas画布上的坐标；
+  ways：client坐标减去canvas画布的坐标。（写函数windowTocanvas）
+  canvas画布的坐标获取是JS函数获取边框边界，getBoundingClientRect()此函数返回矩形对象。
+  ✿windowTocanvas()即可返回x,y的值即是鼠标在canvas画布的坐标。
+   function windowTocanvas(x,y){
+        var bbox=canvas.getBoundingClientRect();
+        return {
+            x:x-bbox.left,
+            y:y-bbox.top
+        }
+2.和鼠标交互的事件
+  onmousedown，onmousemove,onmouseup,onmouseout。
+  鼠标按下，获得当前坐标，所以给鼠标按下这一状态设置变量（布尔值），在事件中判断状态，如是按下状态则执行windowTocanvas(x,y)函数。
+  
+★⑥简易版方形初期放大镜
+1.利用离屏canvas，再次创建canvas放大镜视图，结合之前获取的鼠标坐标，换算起始点绘图坐标。
+2.思路是：只用一张原图片（大），放在第一张底板的canvas画布上，宽高设定同canvas画布同；而此原图本比canvas画布大，
+  每次放大镜点击时获取的大小实际上即是从原图片上截取的，换算原图片和canvas大小的比例得出scale，在进行其他换算。
+  --//？是否可以转换思路，将初始图不变，乘以需要的倍数得出的图片，在用draw的第三种方式截出想要的大小。（一个思路，待尝试）
+3.关键点：new canvas；scale；绘图函数；
+  3.1→在此操作中第一个函数是在ommousedown的时候发生的绘制canvaswithmaginifier函数。
+   function drawCanvasWithMaginifier(isShowMaginifier,point){
+        context.clearRect(0,0,canvas.width,canvas.height);       |
+        context.drawImage(image,0,0,canvas.width,canvas.height); | 清空画布是操作后重绘前的重点。
+        if(isShowMaginifier==true){
+            drawMaginifier(point);
+        }
+    } //这个函数的参数是布尔值是否展示放大镜，和point坐标。★首先清空画布，在绘制图像。当确认展示的时候，进行函数drawMaginifier。
+  3.2→函数画放大镜
+  function drawMaginifier(point){
+        var image_cx=point.x*scale;
+        var image_cy=point.y*scale;
+        var mr=70;
+        var sx=image_cx-mr;
+        var sy=image_cy-mr;
+        var dx=point.x-mr;
+        var dy=point.y-mr;
+        context.drawImage(offcanvas,sx,sy,mr*2,mr*2,dx,dy,mr*2,mr*2)
+    }//这个函数即是绘制一个半径为70的方形放大镜，利用draw的第三种方式。
+    
 
   

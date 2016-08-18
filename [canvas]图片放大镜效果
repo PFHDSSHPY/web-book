@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>pic look</title>
+</head>
+<body>
+<canvas id="canvas" style="display: block;margin: 10px auto">your web browser don't support canvas.</canvas>
+<canvas id="offcanvas" style="display: none"></canvas>
+<script>
+    var canvas=document.getElementById('canvas');
+    var context=canvas.getContext('2d');
+    var offcanvas=document.getElementById('offcanvas');
+    var offcontext=offcanvas.getContext('2d');
+    var scale;
+    var image=new Image();
+    var isMousedown=false;
+
+    window.onload=function(){
+        canvas.width=960;
+        canvas.height=600;
+        image.src="3.jpg"
+        image.onload=function(){
+            offcanvas.width=image.width;
+            offcanvas.height=image.height;
+            scale=offcanvas.width/canvas.width;
+            context.drawImage(image,0,0,canvas.width,canvas.height);
+            offcontext.drawImage(image,0,0);
+        }
+        canvas.onmousedown=function(e){
+            e.preventDefault();
+            var point= windowTocanvas(e.clientX, e.clientY);
+            isMousedown=true;
+           //浏览器的坐标位置
+            drawCanvasWithMaginifier(true,point);
+        }
+        canvas.onmousemove=function(e){
+            e.preventDefault();
+            if( isMousedown==true){
+                var point= windowTocanvas(e.clientX, e.clientY);
+                console.log(point.x,point.y)
+                drawCanvasWithMaginifier(true,point);
+            }
+        }
+        canvas.onmouseup=function(e){
+            e.preventDefault();
+            isMousedown=false;
+            drawCanvasWithMaginifier(false);
+        }
+        canvas.onmouseout=function(e){
+            e.preventDefault();
+            isMousedown=false;
+            drawCanvasWithMaginifier(false);
+        }
+    }
+    function windowTocanvas(x,y){
+        var bbox=canvas.getBoundingClientRect();
+        return {
+            x:x-bbox.left,
+            y:y-bbox.top
+        }
+    }
+    function drawCanvasWithMaginifier(isShowMaginifier,point){
+        context.clearRect(0,0,canvas.width,canvas.height);
+        context.drawImage(image,0,0,canvas.width,canvas.height);
+        if(isShowMaginifier==true){
+            drawMaginifier(point);
+        }
+    }
+    function drawMaginifier(point){
+        var image_cx=point.x*scale;
+        var image_cy=point.y*scale;
+
+        var mr=90;
+        var sx=image_cx-mr;
+        var sy=image_cy-mr;
+
+        var dx=point.x-mr;
+        var dy=point.y-mr;
+
+        context.save();
+        context.beginPath();
+        context.arc(point.x,point.y,90,0,Math.PI*2);
+        context.lineWidth=10;
+        context.strokeStyle="white";
+        context.clip();
+        context.drawImage(offcanvas,sx,sy,mr*2,mr*2,dx,dy,mr*2,mr*2);
+        context.stroke();
+        context.restore();
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,389 @@
+★一.web前端的发展历程
+1. web 1.0【此时大多是内容的展示界面，交互需跳转，通过link连接到其他页面。栗子：官网等】
+      ↓ ajax ↓ （98年出现，05年被接受）
+   web 2.0  【基于ajax，不需要刷新就能做出交互响应。栗子：Gmail，地图等（类似于跑在浏览器里的应用）】
+      ↓ HTML5 ↓（04年出现，10年被接受）
+   web 3.0  【栗子：RT虚拟现实的在线网站】
+2.如何开发复杂的web系统：（协作流程）
+策划→交互（交互稿）→视觉（视觉稿）→前端（UI）→后端→测试  【以下为目前优化后的流程】
+（视觉和前端能同时，后端拿到API接口也可进行制作）
+策划→交互（交互稿）|→视觉（视觉稿） 
+                   |→前端（UI）→后端→测试
+
+3.前端职责：
+视觉稿|页面制作↓【图片颜色空间距离行高等搭配】
+          |→  前端开发→ UI
+交互稿|页面逻辑开发↑【通过线框图反应系统的信息架构和交互流程，包含用户逻辑】
+
+4.技能要求
+页面制作：①css样式②HTML结构③ps切图
+页面逻辑开发：①javascript②DOM
+详：
+①HTML：定义页面结构；
+②css：定义页面样式；
+③JS：定义效果；
+④PS：在视觉稿体现切图；
+⑤DOM：操作编程；
+
+★二.Photoshop切图
+1.什么是切图：
+1>从设计稿切出网页素材（比如按钮图标logo等）2>编写代码，在代码中引入切出来的图；
+2.为什么要切图：
+给网页提供图片素材 HTML：<img src> css: background-image，background-position：00;
+【图片精灵：css sprite:】
+【fir：拿到设计稿（如.psd的文件）→素材切出→产出物（如.png,.jpg文件）】
+3.如何切图：
+①使用PS工具②使用背景图③图片合并方案④浏览器兼容
+①photoshop设置：
+1>ps首选项设置：
+1.工具、面板、视图
+①先在编辑的首选项中将图形文字单位都设为px像素；
+②面板：窗口→调整工具面板，只需留下信息，图层，历史记录，选项，工具；
+③保存工作区：窗口→工作区→新建工作区（若找不到可在PS右上角选择复位）
+④切图常用工具：[1.]移动工具（1.2）【点选后，在上方勾选自动选择；选择图层，不是组】；
+[2.]矩形选框工具（1.1）；[3.]魔棒工具（扣不规则的图形）；[4.]裁剪工具+切片工具；[5.]缩放工具（Ctrl+；Ctrl-）[6.]取色器（前景色取色器；背景色取色器）
+
+⑤辅助视图：在视图菜单下开启
+[1]对齐；[2]标尺；[3]显示>参考线Ctrl+（勾选显示额外内容）
+
+4.获取信息
+打开设计稿，获取信息：
+①尺寸信息：→（测量）width
+【那些需要测量↓：（所有数字都要测量）：矩形选框工具，结合测量面板来测量】
+1>宽度高度；
+2>内边距、外边距；
+3>边框
+4>定位：position
+5>文字大小：font-size
+6>行高：line-height
+7>背景图位置
+
+②颜色信息：→（取色）color
+【那些需要取色↓：（所有颜色都要取色）】
+1>边框色；
+2>背景色；
+3>文字色；
+★*取色工具巧用：确定背景是否为纯色（吸色器）；是否是线性渐变（魔棒）。
+
+5.切图
+［切图及切图的各种操作：隐藏文字（独立图层和非独立图层的不同操作方法）、png8和png24格式的切图方式、可平铺背景的切图方式及活动页的切图方式；背景平铺：对于可平铺背景的切图，可以先了解下css的background-repeat属性，对理解次切图会有帮助］
+1>哪些是需要切出来的图片？
+修饰性的（一般用在background属性）：图标、logo；有特殊效果的按钮、文字等；非纯色的背景；
+［修饰性的］－png24（IE6不支持半透明）   &   png8
+内容性的（一般用在img标签）banner、广告图片；文章中的配图；［颜色丰富，会存为jpg类型］
+2>切图步骤：
+［1］隐藏文字只留背景：若文字为独立图层，隐藏文字图层；｛找到文字图层；去掉眼睛图标｝；
+若文字和背景合并，平铺背景覆盖文字；｛矩型选框工具、自由变换ctrl＋t、使用移动工具＋alt｝
+［2］切图保存png24:｛移动工具选中所需图层，ctrl多选；右键合并图层ctrl＋e；再右键复制图层到新文件，或直接拖至已有文件（新建：ctrl＋n）｝
+［3］切图保存png8:［带背景切］：｛合并（可见）图层（shift＋ctrl＋e）；矩形选框工具选择内容；
+魔棒工具去除多余部分；＋alt｝
+［4］可平铺背景的切图：｛用矩形选框工具选取一块区域；复制粘贴到新文件中［平铺内容充满文件的宽（x轴）或高（y轴）］｝
+［5］切片工具：适用于可以一刀切的活动页｛拉参考线；选择切片工具；点击“基于参考线的切片”按钮；保存（全选切片，统一设置存储格式）｝
+3>保存切图
+存储所需内容：Ctrl+C；Ctrl+N；Ctrl+V（复制，新建，粘贴）→选择文件→“存储为web所用格式”（alt+shift+ctrl+s）：【独立图层】
+【合并图层】：Ctrl+C；Ctrl+N；Ctrl+V（复制，新建，粘贴）
+
+4>保存类型
+①图片色彩丰富，图片可能会有失真，一般用在内容图片上，存成jpg；（选合适品质进行压缩 不设置100）
+②图片色彩不太丰富时无论有无透明要求，保存为PNG8格式；（面板设置：杂边：无；仿色：无）
+③当图片有半透明要求，保存为PNG24格式；（面板默认设置即可）
+④为保证图片质量，保留一份PSD，在PSD上进行修改；（PSD可以保留图层）
+
+5>修改与维护（最终画布的大小要略大）
+要继续放更多的图片：
+①修改画布大小；【图像→画布大小→定位（定在左上角）】
+②移动图标【若图标为独立图层，则用移动工具拖动即可；若图标非独立图层，用移动工具拖动图标】
+③要减小画布到指定区域，选定选取，裁剪【图像→裁剪或裁剪工具】
+★注意事项：修改png8的图片，要更改颜色模式从默认的“索引”改为“RGB颜色”；【图像→模式→RGB】
+
+6>使用背景图带码
+html：<button class=“u-btn”></button>
+css:  按钮是独立图片：.u-btn{  background:url(images/1.png)no-repeat 0 0; }
+        按钮的图片上有其他图：.u-btn{  background:url(images/2.png)no-repeat 0 -50px; }
+图片合并方案：
+
+图片合并时保留空隙：
+    对于具体要保留多大的空隙呢，并没有一个明确的数值，遵循的一个宗旨就是保留的空隙足够后期维护就可以了。
+    如果是小图标，留的空隙可适当小一些，一般20像素左右；那如果是大图标，要留的空隙就要大一点，因为大图标在调整的时候，影响到的空间也会比较大。
+    有了一定的切图经验之后，对于保留多大空隙就会比较有概念，有自己的心得了。
+［为什么要拼图］
+（1）什么是sprite拼图？将剪切好的小图标保存在一个图层内。
+（2）好处：减少网络的请求，提升网页的加载速度。
+［图片优化合并］
+（1）大小与质量｛平衡与取舍；压缩工具：无损minimage；有损：tinypng｝
+（2）合并（图片之间必须保留空隙，考虑到图片的容错性和可维护性，在进行图片合并时需要保留一定的空隙。）
+－排列｛横向排列；纵向排列｝
+－分类
+｛1｝把同属于一个模块的图片进行合并；栗子：一个完整的登陆框，合并成一个静态页面资源；
+｛2｝把大小相近的图片进行合并；栗子：大小行进的按钮；
+｛3｝把色彩相近的图片进行合并；栗子：同一个色系的图标；
+｛4｝综合以上方式合并
+［合并推荐］
+｛1｝只本页用到的图片合并；栗子：登录界面时只用一次，将其页面上的图片整理合并；
+｛2｝有状态的图标合并；🌰：鼠标移入，图标改变样式，排成横向或纵向，css上x轴样式有变化，可将其合并；
+［浏览器兼容方案］
+｛1｝ie6不支持png24半透明；存的时候存两份sprite.png 24—sprite_ie.png 8
+｛2｝css3&切图
+
+
+★三.开发、调试工具
+1.开发工具：
+文本编辑器：①sublime text②notepad③editplus
+IDE（集成开发环境）①webstorm②intelliJIDEA③eclipse
+✿.sublime text：
+①跨平台，启动快；多行选择；各种实用插件；Snippets；支持vim兼容模式；
+②常用快捷键：查找：Ctrl+p文件Ctrl+g具体，加#,查找关键字；命令面板：Ctrl+shift+P；多行选择：Ctrl+D；
+【ALT+F3：xuanzhong:所有相同变量】
+③常用插件：package control：添加更新卸载插件；
+（1）emmet
+（2）docblocker
+（3）sidebarenhancements
+（4）terminal
+④snippets:代码片段
+2.调试工具
+各种浏览器：chrome；Firefox（https://developer.mozilla.org/zh-CN/docs/Tools/Debugger）；IE；Safari
+以chrome为例子：
+★elements：主要用来调试HTML和css，可进行增删查改操作；
+network：网络所有的网络请求；
+source：网络所有的资源，可以设置断点来调试；
+console：JS输出调试；
+resources：网站的本地数据资源，栗子cookies；
+timeline: |
+profiles：|调试性能；
+audits：  |
+以ie为例子：ie6→ie tester（https://msdn.microsoft.com/library/bg182326(v=vs.85).aspx）
+【Puer是一个可以实时编辑刷新的前端服务器，我们在后续课程的演示中会经常用到他。当你修改文件保存后，你不再需要切到浏览器中手动刷新。
+Puer相关文档：https://github.com/leeluolee/puer】
+
+★★ 四.HTML
+1.HTML简介
+2.标签
+{1}语法：<>标签，要求闭合；一个或多个属性值；
+{2}书写规范：统一小写；属性值双引号；嵌套缩进；
+{3}常用属性：
+①全局属性：id；class；style；title：<a title="鼠标移入显示完整的含义"></a>：文字或图标均适用；
+【以下为标签分类】
+②文档章节标签：
+导航标签：<nav> 
+和主要内容不相关的信息（侧边栏广告等：<aside>）
+主体部分的标签：<article>可重复的结构，论坛的帖子，新闻等，评论；<section>文档中的一节（可能相互有关）；
+③文本标签：
+★超链接<a>（target="_self"在自己原本页面打开&target="_blank"新开一页面打开，默认是self；）：
+1.创建指向另一个文档的链接；
+2.创建一个文档内部的锚点：栗子：<a href="#biaoshi"></a><div id="biaoshi"></div>
+3.连接到Email地址或手机联系电话等；
+✿强调<em>语义的强调<strong>加粗的样式强调；
+✿行内容器<span>；✿换行<br>；
+④文本
+引用：cite（引用：会变斜体）和q（引用的内容：会加引号）；代码：code；格式化：b(加粗)和i(斜体)；
+⑤组合内容
+分区：div；段落：p；列表：ul,ol,li；自定义列表：dl,dt,dd；
+pre（保留格式样式）；blockquote（大段引用）；
+⑥嵌入资源
+img:自闭合<img src="" alt="">alt:当网络属性不好时，替代图片显示；
+iframe:嵌入页面；<iframe src="XXX"></iframe>
+object:|嵌入外部资源<param>
+embed:|
+video:<video controls="controls"(进度条) poster="封面插图"><source></source><track kind="引入字幕" src="" label="" ></track></video>
+audio:类似于video；
+图：canvas：高清图，实时数据展示  svg：
+热点区域：map：；area：；
+⑦表格
+table；thead；tbody;tr(rowspan:跨行),td(colspan:跨列)；tfoot;
+⑧表单标签
+form；（属性有两个：action=“”和method=“post”）
+<lable for="xxx"><select id="xxx">for和id里的内容相同；标识这个lable里的内容表示这个selected标签；
+<input >:type{email;url;number;tel;search;range;color;date picker}
+⑨语义化
+【用正确的标签描述页面。】
+语义化的作用：（1）SEO：搜索引擎优化；（2）可访问性；（3）代码可读性，针对开发人员；
+栗子：导航一般用UL和LI来表示；描述文字用P；没有特殊的语义可用span标签了；
+
+3.实体字符
+当需要全部内容展示在页面上.
+栗子：<p>这是<span>标签</p>显示：这是标签。需要<span>也展示出来的话需要加实体字符。
+实体字符表示：①&entity_name; &nbsp;
+②&#entity_number ;(&#120)
+常用的：空格【&nbsp;&#160】引号【&quot；&#34】
+大于号【>:&gt;&#62】小于号【<&lt;&#60】
+版权符号【&copy；&#169】&【&amp;&#38】
+
+★★ 五.CSS
+1.概念：页面中的表现。
+历史：96年CSS1→98：CSS2→07年CSS2.1→CSS3
+语法：HTML注释：<！————> CSS注释：/* ---*/   
+浏览器私有属性：chrome，Safari：-webkit-； Firefox：-moz- ；IE：-ms-； opera：-o-；
+属性值语法：margin{}
+①基本元素：关键字（auto，solid，bold），类型length，color等；inherit和initiate；
+组合符号；空格，&&，||，|，[]，
+数量符号；无，+，？，{}，*，#，
+②   @规则语法：1.@标识符xxx；  2. @标识符{}
+@media：设备符合@media的媒体查询条件才生效；@keyframes：CSS样式动画的中间步骤；@font-face：引入外部字体；
+2.选择器
+①标签选择器
+②类选择器
+栗子：<p class="special stress"> .special{} ; .stress{};
+.className{}
+【.】
+【字母，数字，-，_】
+【className必须以字母开头】
+【区分大小写】【可以 出现多次】
+③id选择器
+<div id="banner">  #banner{}
+#id{}
+【#】
+【字母，数字，-，_】
+【id必须以字母开头】
+【区分大小写】【只能出现一次】
+④通配符选择器
+*{} 【全选】
+⑤属性选择器
+【-[att]】
+<input disabled type="text" value="zhang">
+[disabled]{background-color:#666}
+【-[att]=val】
+<input type="text" value="zhang">
+[type=text]{background-color:#666}
+★：id选择器是属性选择器的特例：
+栗子：#nav{}==[id=nav]{}
+<h1 class="title sports">xxx</h1>
+【-[att]~=val】
+<p class="sports"></p>
+[class~=sports]{}; 【此时~=是包含这个属性样式的都被选中】
+=.sports{}
+【-[att|=val】用于lang属性；
+【-[att^=val]】可用于给href网址连接；
+【-[att$=val]】可用于href文档链接,以$后文字结尾的；
+栗子：<a href="http://xxx.pdf">xx.pdf</a>
+       [href$=pdf]{};
+【-[att*=val]】可用于属性包含具体文字；
+⑥伪类选择器
+栗子：a:link{color:gray;}  a:visited{color:red;}【只能是链接】
+a:hover{color:green;} a:active{color:orange;}
+1.：enabled；→input：enabled{color：#ccc}
+2.：disabled；→input：disabled{color：#ccc}
+3.：checked；→input：checked{color：#ccc}
+4.栗子：
+奇偶相间的列表：
+<ul>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+第一个LI→li:first-child{}
+最后一个LI→li:last-child{}
+LI的（第二个元素）每个偶数项：
+:nth-child(n) 选择器匹配属于其父元素的第 N 个子元素，不论元素的类型。
+n 可以是数字、关键词或公式。n是从0开始算的。
+→li:nth-child(even){}
+→li:nth-last-child(even){从后往前}
+【Odd 和 even 是可用于匹配下标是奇数或偶数的子元素的关键词（第一个子元素的下标是 1）。】
+5.：only-child{}【只有一个元素的标签】
+6.自定义列表dt dd dl
+栗子：dd:nth-child(){}
+7.  :only-of-type{};
+所有父元素里共有type的属性的选择；
+不常用：8.:empty ; :not ; :root; :target; :lang();
+总结：
+✿简单选择器：
+【tag{}】【.classname{}】【#id{}】【*{}】【[att]{}】【:link{}】
+⑦伪元素选择器
+【：：first-letter{}】针对第一个字母的样式；
+【：：before{content：“before”；}】在某个元素之前插入一些内容
+【：：after{content：“after”；}】在某个元素之后插入一些内容
+【：：selection{}】应用于被用户选中的内容；
+⑧组合选择器
+1.后代选择器；.main h2{}
+2.子选择器；.main>h2{}
+3.兄弟选择器；
+<h2></h2>
+<p></p>
+<p></p>
+h2+p{}选择的是和h2相邻的p标签更改样式；
+h2~p{}选择的是h2之后的兄弟节点P标签更改样式；
+⑨选择器分组
+h1,h2,h3{之后是同一样式；}
+
+3.css的优先级
+①行间》id》类，伪类》标签
+②CSS层叠
+相同的属性会覆盖：优先级；后面覆盖前面；
+不同的属性合并；
+③改变优先级
+改变前后顺序；改变优先级，增加权重；加属性样式里面结尾加  【！important】；
+
+4.页面制作中的文本和颜色
+①font-size：<length>|<percentage>|<absolute-size>|<relative-size>【em和百分比的参照物是父元素的大小】
+②font-family；
+③font-weight：加粗；normal；bold;
+④font-style：normal；italic斜体；
+⑤line-height：行高；
+常用：font：[font-style|font-weight|fongt-size|font-family]下划线俩是必要的；
+⑥color；
+⑦White-space：
+
+
+⑧单词自动换行Word-wrap；
+⑨单词break：Word-break；任意字母间可换行；
+⑩text-shadow：文字阴影；栗子：text-shadow：1px 2px 3px #f00；意思是向x轴偏移1px，y轴偏移2px的3px阴影的模糊半径，红色阴影；如果文字阴影中的颜色没有设置，那么阴影颜色就是文字颜色；
+⑪修饰文字，加下划线等：text-decoration；
+⑫超出的文字变成点点点：text-overflow：clip | ellipsis（此属性的value值是文本溢出的隐藏）
+【实现的是当单行文字过长时末尾出现...：.text{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}】
+⑬鼠标指针移入：cursor；cursor：pointer；指针变成手；
+
+5.   强制继承：inherit；属性：inherit；当前元素的属性样式强制继承上一个父元素对应的属性样式；
+
+6.盒模型
+
+盒模型概念、width、height、padding、margin(水平居中)、border、border-radius、overflow、box-sizing、box-shadow、outline
+padding：10px 10px 10px 10px (顺时针，上右下左；)
+
+7.背景
+1.背景颜色：默认时transparent（全透明）
+2.background-img：xx.img，xx2.img ［此时背景会平铺两种的背景图片，第一次写的第一张图片在前。］
+3.background-repeat:repeat-x;repeat-y;space(留空隙)；round；
+4.background-attachment:scroll(拖动滚动条时，背景图片不动)；local（背景图片一起动）
+5.background-position:
+
+★8.布局
+1.布局的定义：浏览器将元素以正确的大小摆放在正确的位置。
+关键：（影响CSS元素大小和位置的因素）
+布局是元素摆放的模式。
+✿2.display：设置元素的显示方式；
+display：block（块级元素：默认是父级元素的宽度；可设置宽高；换行显示）
+默认块级元素：div;p;h1-h6;ul;form;
+|| inline（行级元素：默认宽度是内容宽度；不可设置宽高；同行显示）
+默认行级元素：span;a;label;cite;em；
+|| inline-block（默认宽度是内容宽度；可设置宽高；同行显示；整块换行）
+|| none（设置元素不显示）
+（display：none和visibility：hidden）对于后者来说是隐藏了看不到了，但是留下的空白
+还在占位；而none是彻底不显示，之后的位置会前移。
+IE8以下:
+    兼容性：display:inline-block;*display:inline;*zoom:1;
+
+3.布局1：块级元素的水平居中；
+关键：margin：auto；
+布局2：居中导航；
+关键：ul,li等margin；
+布局3：轮播头图；
+
+
+✿4.登录框弹出（栗子）元素叠加：【position】
+position设置定位方式：top,right ,bottom,left,z-index设置位置
+即是：元素边缘距参照物边缘的距离。
+z-index栈：父级元素的z高度也影响子元素的z值。
+position：static；（默认）
+relative；（相对定位）仍然在文档流中；参照物为元素本身；{改变元素层级}【使用场景，绝对定位元素的参照物】
+absolute；（绝对定位）默认宽度为内容宽度；脱离了文档流；参照物为第一个定位元素或根元素；
+fixed；（固定定位）默认宽度为内容宽度；脱离了文档流；参照物为视窗；（浏览器窗口）
+
+5.布局4：固定顶栏布局；
+关键：position：fixed；position:fixed 在ie6及以下不支持
+布局5：遮罩；
+关键：<div class="mask">
+.mask{position:fixed; top:0;  left:0;  z-index:999;  width:100%;  height:100%}
+布局6：三行自适应布局；【顶栏固定在最上面；低栏固定在最下面】
+关键：
+✿6.布局主内容区：
+块级元素同行显示；在文档流中。float

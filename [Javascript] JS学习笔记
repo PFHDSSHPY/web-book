@@ -1,0 +1,91 @@
+【JS 基础Ⅰ 】基本类型-操作符和表达式-语句
+一。基本类型
+1.基本数据类型
+number
+整数
+浮点数（1.4E2 ）
+特殊值：NaN (not a number) ; Infinity (无穷大)
+string
+双引号或单引号引起来的都是string
+Boolean
+true false；
+Object【无序名值对的集合】
+Null
+null
+Undefined
+undefined【声明但未赋值；获取对象不存在的属性】
+2.获取得知数据类型
+typeof 
+3.原始类型和引用类型（↓）
+
+原始类型【直接赋值给对应变量】
+  Number
+  String
+  Boolean
+  Null
+  Undefined
+  引用类型【存的是指针，指向对象】
+  Object
+
+二。操作符和表达式
+1.JS操作符
+一元操作符
+  ++ 【注意X++还++X即可】
+  --
+算数操作符
+  +; - ; * ; / ; %
+关系操作符
+  > ; < ; >= ; <=
+相等操作符
+  == 【做相等比较操作时，字符串类型会转换；✿栗子：0==false】
+JavaScript中的相等性判断 【↑】
+  ！=
+===【全等，不做类型转换】
+  ！==
+逻辑操作符
+  ！
+  &&【true和其他操作数进行与操作，则是其他操作数；false则都是false,之前有false，之后的运算则都不用进行】
+  ||
+赋值操作符
+  = 【num+=x】
+条件操作符
+  ？ ：【布尔表达式？表达式一：表达式二；true：一；false：二；】
+逗号操作符
+  ，【在赋值操作中运用较多】
+对象操作符
+  new【获取对象实例】
+  delete【删除对象属性】
+  .【获取对象属性】
+  []【获取对象属性】
+  instanceof 【获取是什么对象的实例】
+  in 【判断属性是否在对象中】
+位操作符
+  ~ ； & ；|；^  ；<< ；>>  ；>>>
+2.操作符优先级
+3.表达式（数字或和运算符的组合）
+
+三。语句
+1.语句
+条件语句
+  if(条件){语句一}else{语句二}
+  if(条件){语句一}else if{语句二}else{语句三}
+  switch(表达式){
+  case 值1：语句
+  break；
+  case 值2：语句
+  break；
+  default：语句
+  }  【没有匹配的执行default；】
+循环语句
+  while（表达式）{语句}
+  do{语句} while（表达式）【先执行do，无论满不满足while】
+  for（初始化；循环条件；更新表达式）{语句}
+  break；continue；
+循环语句-for-in：for（属性名 in 对象）{语句}
+with语句
+  with（表达式）{语句}【对同一个对象进行多次操作】
+异常捕获语句
+  try{语句}catch（exception）{语句}finally{语句}
+
+♥有疑问可见：
+https://shimo.im/doc/IiR3zCvV8ccY9bTF

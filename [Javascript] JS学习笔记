@@ -89,3 +89,110 @@ with语句
 
 ♥有疑问可见：
 https://shimo.im/doc/IiR3zCvV8ccY9bTF
+
+【JS 基础Ⅱ】数值-字符串
+一。数值
+二。运算(1)
+绝对值：Math.abs(x);
+四舍五入：Math.round(x);【可把浮点型变整形：】
+向上取整：Math.ceil(x);
+向下取整：Math.floor(x);
+获取最大值：Math.max(value1;value2;...);
+获取最小值：Math.min(value1;value2;...);
+获取随机值：Math.random(x);【大于等于0小于1】
+Math的其他方法：
+
+二。运算(2)
+字符强制转换整形：parseInt(string，radix)
+输出为浮点型：parseFloat(string)
+转化成数字：Number(value) 【对于付款功能输入较合适】
+需要保留几位小数：num.toFixed(digits) 
+栗子：（100.12345）.toFixed（2） // "100.12"
+
+三。字符串
+【拿单引号或双引号引起的，就描述的是字符串。】
+判断字符串长度：str.length;
+通过索引找出对应字符：str.charAt(index);
+找出对应字符并替换：str.replace(regexp|substr,newsubstr)
+
+截取字符串之间的字符（通过索引的方式）：str.substring(indexa[,indexb])［从a到b，不包括b］
+
+截取字符串之间的字符（通过索引的方式，可以传入负的索引值［倒数第几个］）：str.slice(begina[,endb])［从a到b，包括起始索引值，不包括b结束索引］
+
+截取字符串之间的字符（通过length的方式）：str.substr(start[,length])［从开始到多少长度的字符串］
+搜索中关键字通过“”分开：str.split();
+
+字符串全部变小写：str.toLowerCase();
+字符串全部变大写：str.toUpperCase();
+字符串链接：＋
+
+String（）:转字符；
+
+转义：反斜杠\
+
+进阶版单元测试1：
+function type(obj){
+    return  Object.prototype.toString.call(obj).slice(8, -1).toLowerCase()
+}
+进阶版单元测试2：
+
+Object.create
+<script>
+    if( typeof Object.create != 'function'){
+        Object.create = function(obj){
+            if( typeof obj != 'object' ){
+                throw TypeError('Object prototype may only be an Object or null')
+    }
+            var r = function(){}
+            r.prototype = obj
+            return new r;  //new r() 与new r 没有区别，只是r函数没有参数时，括号可以省略
+    }
+    }var a = Object.create({x:1,y:2})
+    alert(a.x)
+</script>
+
+进阶版单元测试3：
+http://www.jianshu.com/p/c769882931b4
+答：
+高版本的firefox,chrome及ie10以上的浏览器实现了Function.prototype.bind方法，bind方法调用语法为：
+functionObj.bind(thisArg[, arg1[, arg2[, ...]]])
+使用范例参考如下:
+function move(x, y) {   
+  this.x += x;    
+   this.y += y; 
+   }
+   var point = {x:1, y:2};
+    var pointmove = move.bind(point, 2, 2);
+     pointmove(); // {x:3, y:4}
+但是低版本浏览器中并未提供该方法，请给出兼容低版本浏览器的bind方法的代码实现。
+实现思路
+回顾Function.prototype.bind用法：通过参数指定函数调用者和函数参数并返回该函数引用，可知
+判断浏览器是否兼容，不兼容就move添加一个bind的方法，让其能够调用move.bindFunction.prototype.bind
+将参数转换为数组保存
+同时将数组返回var _self = this, args = arguments; return function() { _self.apply(obj, Array.prototype.slice.call(args, 1)); }
+所以可得
+Function.prototype.bind= function(obj){
+      var _self = this, args = arguments;
+      return function() {
+      _self.apply(obj, Array.prototype.slice.call(args, 1));
+      }
+      }
+在解题的过程中，有些知识点掌握不熟练导致花了很多时间理解，例如原型链，构造函数，构造方法等等，搜寻网上的相关资料，有一个关于prototype的解析不错：Prototype源码浅析——Function.prototype部分(一)
+
+进阶版单元测试4：
+斐波那契数列（Fibonacci Sequence）由 0 和 1 开始，之后的斐波那契数就由之前的两数相加。在数学上，斐波那契数列是以递归的方法来定义的：
+
+请实现一个函数，参数为n，返回结果为以n为下标的斐波那契数。函数语法为
+var num = fibonacci(n);
+使用举例如下
+var num = fibonacci(3); // num值等于2
+var num = fibonacci(5); // num值等于5
+答：
+function fibonacci(n) {
+    if(n==0) return 0;
+    if(n==1) return 1;
+    return fibonacci(n-1) + fibonacci(n-2);
+}
+
+♥有疑问可见：
+https://shimo.im/doc/xkwMfW3UKgcC6j3I
